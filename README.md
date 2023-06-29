@@ -1,5 +1,9 @@
 # gluon-mesh-vpn-wireguard-kbu
 
+Pretty much https://github.com/freifunk-gluon/gluon/tree/master/package/gluon-mesh-vpn-wireguard but
+- removed **wgpeerselector** dependency and code
+- using a minutely run **micrond** shell script to establish wirguard connections
+
 You can use this package for connecting with wireguard to the freifunk hood BonnV2 and UmgebungV2. 
 
 You should use something like the following in the site.conf:
