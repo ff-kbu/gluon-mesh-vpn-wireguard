@@ -9,9 +9,11 @@ if [ "$?" -ne "0" ]; then
 fi
 
 # Ist wireguard aktiviert??
-# TODO redundant?
-ENABLED="$(uci get wireguard.wireguard.enabled)"
-[ "$ENABLED" = "true" ] || [ "$ENABLED" = "1" ] || exit
+# TODO obsolet: wir schalten jetzt mit "gluon.mesh_vpn.enable"
+# vlt. wär's sinnig mal auf wgpeerselector zu migrieren?
+#ENABLED="$(uci get wireguard.wireguard.enabled)"
+#[ "$ENABLED" = "true" ] || [ "$ENABLED" = "1" ] || exit
+
 
 # Ist mesh-vpn aktiviert??
 ENABLED="$(uci get gluon.mesh_vpn.enabled)"
@@ -82,7 +84,7 @@ do
     # Von allen Servern die durschnittliche potenzielle Geschwindigkeit pro Wireguard-Verbindung
     HOST="$(uci get wireguard.peer_$I.endpoint | cut -d':' -f1)"
     SPEED2="$(curl https://${HOST}/speed.php -k --connect-timeout 2 -s --fail)" || continue
-    # Wenn aktueller Server h�heren Wert hat, Servernummer speichern
+    # Wenn aktueller Server höheren Wert hat, Servernummer speichern
     if [ "$SPEED2" -gt "$SPEED1" ]; then
         AUSWAHL="$I"
         SPEED1="$SPEED2"
